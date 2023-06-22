@@ -35,6 +35,6 @@ export const getCurrentDateTime = () => {
 
     const hours = addZero(date.getHours());
     const minutes = addZero(date.getMinutes());
-    // console.log(dayOfMonth, month, year, hours, minutes, dayOfWeek)  ;
+
     return { dayOfMonth, month, year, hours, minutes, dayOfWeek };
 };

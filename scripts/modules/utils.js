@@ -38,23 +38,6 @@ export const getCurrentDateTime = () => {
 
     return { dayOfMonth, month, year, hours, minutes, dayOfWeek };
 };
-/* установка направления ветра спецсимвола */
-export const getWindDirection = (deg) => {
-    const directions = [
-        '&#8593;',
-        '&#8598;',
-        '&#8592;',
-        '&#8601;',
-        '&#8595;',
-        '&#8600;',
-        '&#8594;',
-        '&#8599;', 
-    ];
-    /* расчет угла ветра (по часовой стрелке выполняется расчет) для стрелки */
-    const i = Math.round(deg / 45) % 8;
-
-    return directions[i]
-}
 
 /* точка росы высчитвается из температуры и влажности */
 export const calculateDewPoint = (temp, humidity) => {
@@ -78,7 +61,8 @@ export const getWeatherForecastData = (data) => {
     const forecast = data.list.filter((item) => 
         // если время равно 12 и день больше, чем сегодняшний
         new Date(item.dt_txt).getHours() === 12 && 
-        new Date(item.dt_txt).getDate() > new Date().getDate(),
+        new Date(item.dt_txt).getDate() > new Date().getDate() && 
+        new Date(item.dt_txt).getDate() < new Date().getDate() + 5,
     );
 
     const forecastData = forecast.map((item) => {
@@ -106,7 +90,8 @@ export const getWeatherForecastData = (data) => {
             if (tempDate.getDate() === date.getDate()) {
                 if (temp < minTemp) {
                     minTemp = temp;
-                } else {
+                } 
+                if (temp > maxTemp) {
                     maxTemp = temp;
                 }
             }

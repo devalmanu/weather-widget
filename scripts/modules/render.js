@@ -1,9 +1,7 @@
-import { getCurrentDateTime } from "./utils.js";
+import { getCurrentDateTime, getWindDirection } from "./utils.js";
 
 export const renderWidgetToday = (widget, data) => {
     const { dayOfMonth, month, year, hours, minutes, dayOfWeek } = getCurrentDateTime();
-
-    console.log(data)
 
     widget.insertAdjacentHTML(
         'beforeend',
@@ -34,13 +32,16 @@ export const renderWidgetToday = (widget, data) => {
 };
 
 export const renderWidgetOther = (widget, data) => {
+    
+    console.log(data)
     widget.insertAdjacentHTML(
+        
         'beforeend',
         `<div class="widget__other">
             <div class="widget__wind">
                 <p class="widget__wind-title">Ветер</p>
                 <p class="widget__wind-speed">${data.wind.speed} м/с</p>
-                <p class="widget__wind-text">&#8599;</p>
+                <p class="widget__wind-text">${getWindDirection(data.wind.deg)}</p>
             </div>
 
             <div class="widget__humidity">

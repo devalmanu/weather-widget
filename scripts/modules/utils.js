@@ -38,3 +38,18 @@ export const getCurrentDateTime = () => {
 
     return { dayOfMonth, month, year, hours, minutes, dayOfWeek };
 };
+/* установка направления ветра спецсимвола */
+export const getWindDirection = (deg) => {
+    const directions = [
+        '&#8592;',
+        '&#8593;',
+        '&#8594;',
+        '&#8595;',
+    ]
+
+    console.log((deg / 45))
+    /* расчет угла ветра (по часовой стрелке выполняется расчет) для стрелки */
+    const i = (Math.round(deg / 45)) % 8;
+
+    return directions[i]
+}

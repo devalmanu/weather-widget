@@ -10,16 +10,15 @@ export const startWidget = async () => {
 
     const dataWeather = await fetchWeather('Минск');
 
-    // if (dataWeather.success) {
-    //     renderWidgetToday(widget, dataWeather.data);
-    //     renderWidgetOther(widget, dataWeather.data);
-    //     renderWidgetForecast(widget);
-    // } else {
-    //     showError();
-    // }
+    if (dataWeather.success) {
+        renderWidgetToday(widget, dataWeather.data);
+        renderWidgetOther(widget, dataWeather.data);
+    } else {
+        showError();
+    }
 
-    renderWidgetToday(widget);
-    renderWidgetOther(widget);
+    // renderWidgetToday(widget);
+    // renderWidgetOther(widget);
     renderWidgetForecast(widget);
 
     return widget;

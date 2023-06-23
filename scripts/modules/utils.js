@@ -41,15 +41,34 @@ export const getCurrentDateTime = () => {
 /* установка направления ветра спецсимвола */
 export const getWindDirection = (deg) => {
     const directions = [
-        '&#8592;',
         '&#8593;',
-        '&#8594;',
+        '&#8598;',
+        '&#8592;',
+        '&#8601;',
         '&#8595;',
-    ]
-
-    console.log((deg / 45))
+        '&#8600;',
+        '&#8594;',
+        '&#8599;', 
+    ];
     /* расчет угла ветра (по часовой стрелке выполняется расчет) для стрелки */
-    const i = (Math.round(deg / 45)) % 8;
+    const i = Math.round(deg / 45) % 8;
 
     return directions[i]
+}
+
+/* точка росы высчитвается из температуры и влажности */
+export const calculateDewPoint = (temp, humidity) => {
+    const a = 17.27;
+    const b = 237.7;
+
+    const ft = (a * temp) / (b + temp) + Math.log(humidity / 100);
+    const dewPoint = (b * ft) / (a - ft);
+
+    return dewPoint.toFixed(1)
+}
+
+/* формула расчета перевода гПА в мм ртутного столба */
+export const convertPressure = (pressure) => {
+    const mmHg = pressure * 0.750062;
+    return Math.round(mmHg);
 }

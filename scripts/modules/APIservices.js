@@ -10,8 +10,8 @@ export const fetchWeather = async (city) => {
         }
         const data = await response.json();
         return { success: true, data };
-    } catch(err) {
-        return { success: false, err };
+    } catch (error) {
+        return { success: false, error };
     
     }
 }
@@ -25,8 +25,8 @@ export const fetchForecast = async (city) => {
         }
         const data = await response.json();
         return { success: true, data };
-    } catch(err) {
-        return { success: false, err };
+    } catch (error) {
+        return { success: false, error };
     
     }
 }

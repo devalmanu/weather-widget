@@ -4,12 +4,12 @@ import {
     renderWidgetOther, 
     renderWidgetForecast } from "./render.js";
 
-export const startWidget = async () => {
-    const city = "Минск"
-
-    const widget = document.createElement('div');
-    widget.classList.add('widget');
-
+export const startWidget = async (city, widget) => {
+    if (!widget) {
+        widget = document.createElement('div');
+        widget.classList.add('widget');
+    }
+    
     const dataWeather = await fetchWeather(city);
 
     if (dataWeather.success) {

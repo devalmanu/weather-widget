@@ -1,5 +1,7 @@
+import { startWidget } from "./widgetServices.js";
+
 /* редактирование города */
-export const cityServicesSearch = (app) => {
+export const cityServicesSearch = (widget) => {
     const button = document.querySelector('.widget__change-city');
 
     button.addEventListener('click', () => {
@@ -13,8 +15,16 @@ export const cityServicesSearch = (app) => {
         inputCity.placeholder = 'Введите город';
 
         form.append(inputCity);
-        app.append(form);
+        widget.append(form);
 
-        
+        inputCity.focus();
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            /* очистка приложения после отправки */
+            widget.textContent = '';
+            await startWidget(inputCity.value, widget);
+            cityServicesSearch(widget);
+        })
     });
 };

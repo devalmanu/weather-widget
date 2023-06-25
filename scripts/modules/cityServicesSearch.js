@@ -24,6 +24,7 @@ export const cityServicesSearch = (widget) => {
             /* очистка приложения после отправки */
             widget.textContent = '';
             await startWidget(inputCity.value, widget);
+            /* происходит перезапуск приложения */
             cityServicesSearch(widget);
         })
     });
